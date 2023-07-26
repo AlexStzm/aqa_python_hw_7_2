@@ -2,13 +2,12 @@ import pytest
 from selene.support.shared import browser
 from selene import be, have
 
-def teardown_function():
-    browser.quit()
-
-@pytest.fixture
+@pytest.fixture(scope="function", autouse=True)
 def size_browser():
     browser.config.window_width = 1680
     browser.config.window_height = 1050
+    yield
+    browser.quit()
 
 def test_valid_search_query():
     browser.open('https://google.com')
