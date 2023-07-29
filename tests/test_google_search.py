@@ -1,6 +1,6 @@
 import pytest
 from selene.support.shared import browser
-from selene import be, have
+from selene import browser, be, have
 
 @pytest.fixture(scope="function", autouse=True)
 def size_browser():
