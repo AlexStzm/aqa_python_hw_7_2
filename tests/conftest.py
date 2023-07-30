@@ -7,3 +7,7 @@ def browser_manager():
     browser.config.window_height = 1050
     yield
     browser.quit()
+
+@pytest.fixture(scope="function", autouse=True)
+def base_url():
+    browser.config.base_url = 'https://qa.guru'

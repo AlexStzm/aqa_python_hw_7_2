@@ -1,8 +1,8 @@
 from selene.support.shared import browser
 from selene import have
 
-def test_valid_login(browser_manager):
-    browser.open('https://qa.guru/cms/system/login')
+def test_valid_login(browser_manager, base_url):
+    browser.open('/cms/system/login')
 
     browser.element('.login-form [name=email]').type('qagurubot@gmail.com').press_tab()
     browser.element('[name=password]').type('qagurupassword').press_enter()
@@ -11,8 +11,8 @@ def test_valid_login(browser_manager):
     browser.element('.logined-form').should(have.text('QA_GURU_BOT'))
 
 
-def test_invalid_login_with_wrong_password(browser_manager):
-    browser.open('https://qa.guru/cms/system/login')
+def test_invalid_login_with_wrong_password(browser_manager, base_url):
+    browser.open('/cms/system/login')
 
     browser.element('.login-form [name=email]').type('qagurubot@gmail.com').press_tab()
     browser.element('[name=password]').type('abracadabra').press_enter()
@@ -20,8 +20,8 @@ def test_invalid_login_with_wrong_password(browser_manager):
     browser.element('.login-form .btn-success').should(have.exact_text('Неверный пароль'))
 
 
-def test_invalid_login_with_empty_password(browser_manager):
-    browser.open('https://qa.guru/cms/system/login')
+def test_invalid_login_with_empty_password(browser_manager, base_url):
+    browser.open('/cms/system/login')
 
     browser.element('.login-form [name=email]').type('qagurubot@gmail.com').press_enter()
 
